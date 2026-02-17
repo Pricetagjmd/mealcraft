@@ -1,0 +1,6 @@
+{
+  "extends": "@mealcraft/config/tsconfig.base.json",
+  "compilerOptions": {
+    "strictNullChecks": true
+  }
+}

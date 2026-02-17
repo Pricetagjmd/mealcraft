@@ -1,0 +1,25 @@
+{
+  "name": "@mealcraft/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@better-auth/expo": "catalog:",
+    "@mealcraft/db": "workspace:*",
+    "@mealcraft/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@mealcraft/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
