@@ -37,6 +37,22 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+
+	/* Voxel Design Tokens - Colors */
+	--grass: #5d9b47;
+	--stone: #7f7f7f;
+	--lava: #cf4913;
+	--water: #3f76e4;
+	--diamond: #4aedd9;
+	--obsidian: #1d1d21;
+	--gold: #fcdb43;
+	--ember: #ff6b35;
+	--cobble: #535353;
+	--redstone: #aa0f01;
+
+	/* Voxel Design Tokens - Shadow & Radius */
+	--shadow-voxel: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+	--radius-voxel: 4px;
 }
 
 .dark {
@@ -71,6 +87,59 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Voxel Keyframe Animations */
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translateX(-4px);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translateX(4px);
+	}
+}
+
+@keyframes depress {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.95);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+}
+
+@keyframes skeleton-pulse {
+	0%,
+	100% {
+		opacity: 0.4;
+	}
+	50% {
+		opacity: 0.8;
+	}
 }
 
 @theme inline {
@@ -113,6 +182,18 @@
 	--radius-2xl: calc(var(--radius) + 8px);
 	--radius-3xl: calc(var(--radius) + 12px);
 	--radius-4xl: calc(var(--radius) + 16px);
+
+	/* Voxel Colors for Tailwind */
+	--color-grass: var(--grass);
+	--color-stone: var(--stone);
+	--color-lava: var(--lava);
+	--color-water: var(--water);
+	--color-diamond: var(--diamond);
+	--color-obsidian: var(--obsidian);
+	--color-gold: var(--gold);
+	--color-ember: var(--ember);
+	--color-cobble: var(--cobble);
+	--color-redstone: var(--redstone);
 }
 
 @layer base {
@@ -124,5 +205,351 @@
 	}
 	html {
 		@apply font-sans;
+	}
+}
+
+@layer utilities {
+	/* Voxel Shadow Utility */
+	.shadow-voxel {
+		box-shadow: var(--shadow-voxel);
+	}
+
+	/* Voxel Border Radius Utility */
+	.rounded-voxel {
+		border-radius: var(--radius-voxel);
+	}
+
+	/* Voxel Animation Utilities */
+	.animate-shake {
+		animation: shake 0.3s ease-in-out;
+	}
+	.animate-depress {
+		animation: depress 0.15s ease-in-out;
+	}
+	.animate-pulse {
+		animation: pulse 1.5s ease-in-out infinite;
+	}
+	.animate-skeleton-pulse {
+		animation: skeleton-pulse 1.5s ease-in-out infinite;
+	}
+
+	/* Voxel Background Color Utilities */
+	.bg-grass {
+		background-color: var(--grass);
+	}
+	.bg-stone {
+		background-color: var(--stone);
+	}
+	.bg-lava {
+		background-color: var(--lava);
+	}
+	.bg-water {
+		background-color: var(--water);
+	}
+	.bg-diamond {
+		background-color: var(--diamond);
+	}
+	.bg-obsidian {
+		background-color: var(--obsidian);
+	}
+	.bg-gold {
+		background-color: var(--gold);
+	}
+	.bg-ember {
+		background-color: var(--ember);
+	}
+	.bg-cobble {
+		background-color: var(--cobble);
+	}
+	.bg-redstone {
+		background-color: var(--redstone);
+	}
+
+	/* Voxel Text Color Utilities */
+	.text-grass {
+		color: var(--grass);
+	}
+	.text-stone {
+		color: var(--stone);
+	}
+	.text-lava {
+		color: var(--lava);
+	}
+	.text-water {
+		color: var(--water);
+	}
+	.text-diamond {
+		color: var(--diamond);
+	}
+	.text-obsidian {
+		color: var(--obsidian);
+	}
+	.text-gold {
+		color: var(--gold);
+	}
+	.text-ember {
+		color: var(--ember);
+	}
+	.text-cobble {
+		color: var(--cobble);
+	}
+	.text-redstone {
+		color: var(--redstone);
+	}
+
+	/* Voxel Border Color Utilities */
+	.border-grass {
+		border-color: var(--grass);
+	}
+	.border-stone {
+		border-color: var(--stone);
+	}
+	.border-lava {
+		border-color: var(--lava);
+	}
+	.border-water {
+		border-color: var(--water);
+	}
+	.border-diamond {
+		border-color: var(--diamond);
+	}
+	.border-obsidian {
+		border-color: var(--obsidian);
+	}
+	.border-gold {
+		border-color: var(--gold);
+	}
+	.border-ember {
+		border-color: var(--ember);
+	}
+	.border-cobble {
+		border-color: var(--cobble);
+	}
+	.border-redstone {
+		border-color: var(--redstone);
+	}
+}
+
+/* Responsive Breakpoint Utilities - sm (640px) */
+@media (min-width: 640px) {
+	.sm\:shadow-voxel {
+		box-shadow: var(--shadow-voxel);
+	}
+	.sm\:rounded-voxel {
+		border-radius: var(--radius-voxel);
+	}
+	.sm\:animate-shake {
+		animation: shake 0.3s ease-in-out;
+	}
+	.sm\:animate-depress {
+		animation: depress 0.15s ease-in-out;
+	}
+	.sm\:animate-pulse {
+		animation: pulse 1.5s ease-in-out infinite;
+	}
+	.sm\:animate-skeleton-pulse {
+		animation: skeleton-pulse 1.5s ease-in-out infinite;
+	}
+	.sm\:bg-grass {
+		background-color: var(--grass);
+	}
+	.sm\:bg-stone {
+		background-color: var(--stone);
+	}
+	.sm\:bg-lava {
+		background-color: var(--lava);
+	}
+	.sm\:bg-water {
+		background-color: var(--water);
+	}
+	.sm\:bg-diamond {
+		background-color: var(--diamond);
+	}
+	.sm\:bg-obsidian {
+		background-color: var(--obsidian);
+	}
+	.sm\:bg-gold {
+		background-color: var(--gold);
+	}
+	.sm\:bg-ember {
+		background-color: var(--ember);
+	}
+	.sm\:bg-cobble {
+		background-color: var(--cobble);
+	}
+	.sm\:bg-redstone {
+		background-color: var(--redstone);
+	}
+	.sm\:text-grass {
+		color: var(--grass);
+	}
+	.sm\:text-stone {
+		color: var(--stone);
+	}
+	.sm\:text-lava {
+		color: var(--lava);
+	}
+	.sm\:text-water {
+		color: var(--water);
+	}
+	.sm\:text-diamond {
+		color: var(--diamond);
+	}
+	.sm\:text-obsidian {
+		color: var(--obsidian);
+	}
+	.sm\:text-gold {
+		color: var(--gold);
+	}
+	.sm\:text-ember {
+		color: var(--ember);
+	}
+	.sm\:text-cobble {
+		color: var(--cobble);
+	}
+	.sm\:text-redstone {
+		color: var(--redstone);
+	}
+	.sm\:border-grass {
+		border-color: var(--grass);
+	}
+	.sm\:border-stone {
+		border-color: var(--stone);
+	}
+	.sm\:border-lava {
+		border-color: var(--lava);
+	}
+	.sm\:border-water {
+		border-color: var(--water);
+	}
+	.sm\:border-diamond {
+		border-color: var(--diamond);
+	}
+	.sm\:border-obsidian {
+		border-color: var(--obsidian);
+	}
+	.sm\:border-gold {
+		border-color: var(--gold);
+	}
+	.sm\:border-ember {
+		border-color: var(--ember);
+	}
+	.sm\:border-cobble {
+		border-color: var(--cobble);
+	}
+	.sm\:border-redstone {
+		border-color: var(--redstone);
+	}
+}
+
+/* Responsive Breakpoint Utilities - md (1024px) */
+@media (min-width: 1024px) {
+	.md\:shadow-voxel {
+		box-shadow: var(--shadow-voxel);
+	}
+	.md\:rounded-voxel {
+		border-radius: var(--radius-voxel);
+	}
+	.md\:animate-shake {
+		animation: shake 0.3s ease-in-out;
+	}
+	.md\:animate-depress {
+		animation: depress 0.15s ease-in-out;
+	}
+	.md\:animate-pulse {
+		animation: pulse 1.5s ease-in-out infinite;
+	}
+	.md\:animate-skeleton-pulse {
+		animation: skeleton-pulse 1.5s ease-in-out infinite;
+	}
+	.md\:bg-grass {
+		background-color: var(--grass);
+	}
+	.md\:bg-stone {
+		background-color: var(--stone);
+	}
+	.md\:bg-lava {
+		background-color: var(--lava);
+	}
+	.md\:bg-water {
+		background-color: var(--water);
+	}
+	.md\:bg-diamond {
+		background-color: var(--diamond);
+	}
+	.md\:bg-obsidian {
+		background-color: var(--obsidian);
+	}
+	.md\:bg-gold {
+		background-color: var(--gold);
+	}
+	.md\:bg-ember {
+		background-color: var(--ember);
+	}
+	.md\:bg-cobble {
+		background-color: var(--cobble);
+	}
+	.md\:bg-redstone {
+		background-color: var(--redstone);
+	}
+	.md\:text-grass {
+		color: var(--grass);
+	}
+	.md\:text-stone {
+		color: var(--stone);
+	}
+	.md\:text-lava {
+		color: var(--lava);
+	}
+	.md\:text-water {
+		color: var(--water);
+	}
+	.md\:text-diamond {
+		color: var(--diamond);
+	}
+	.md\:text-obsidian {
+		color: var(--obsidian);
+	}
+	.md\:text-gold {
+		color: var(--gold);
+	}
+	.md\:text-ember {
+		color: var(--ember);
+	}
+	.md\:text-cobble {
+		color: var(--cobble);
+	}
+	.md\:text-redstone {
+		color: var(--redstone);
+	}
+	.md\:border-grass {
+		border-color: var(--grass);
+	}
+	.md\:border-stone {
+		border-color: var(--stone);
+	}
+	.md\:border-lava {
+		border-color: var(--lava);
+	}
+	.md\:border-water {
+		border-color: var(--water);
+	}
+	.md\:border-diamond {
+		border-color: var(--diamond);
+	}
+	.md\:border-obsidian {
+		border-color: var(--obsidian);
+	}
+	.md\:border-gold {
+		border-color: var(--gold);
+	}
+	.md\:border-ember {
+		border-color: var(--ember);
+	}
+	.md\:border-cobble {
+		border-color: var(--cobble);
+	}
+	.md\:border-redstone {
+		border-color: var(--redstone);
 	}
 }
