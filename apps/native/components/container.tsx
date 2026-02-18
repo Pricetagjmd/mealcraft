@@ -1,15 +1,30 @@
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet } from "react-native-unistyles";
+import type React from "react";
+import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { useTheme } from "@/providers/theme-provider";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
-  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+	const { theme } = useTheme();
+	const insets = useSafeAreaInsets();
+
+	return (
+		<View
+			style={[
+				styles.container,
+				{
+					backgroundColor: theme.colors.background,
+					paddingBottom: insets.bottom,
+				},
+			]}
+		>
+			{children}
+		</View>
+	);
 };
 
-const styles = StyleSheet.create((theme, rt) => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
-    paddingBottom: rt.insets.bottom,
-  },
-}));
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+});
