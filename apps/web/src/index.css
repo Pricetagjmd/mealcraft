@@ -38,29 +38,65 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 
-	/* Voxel Design Tokens - Colors */
+	/* Voxel Design Tokens - Colors (Design System 4.1) */
 	--grass: #5d8e22;
+	--dirt: #8b5e3c;
+	--sky: #c4e5f2;
 	--stone: #7e7e7e;
-	--lava: #cf4913;
+	--obsidian: #1a1a1a;
+	--lava: #cf5c28;
+	--ember: #e8913a;
+	--wood: #a07449;
+	--cobble: #b0b0b0;
+	--redstone: #cc3333;
 	--water: #3f76e4;
 	--diamond: #4aedd9;
-	--obsidian: #1a1a1a;
 	--gold: #fcdb43;
-	--ember: #ff6b35;
-	--cobble: #535353;
-	--redstone: #aa0f01;
-	--sky: #c4e5f2;
 	--white: #ffffff;
 
-	/* Voxel Design Tokens - Shadow & Radius */
-	--shadow-voxel: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-	--radius-voxel: 4px;
+	/* Voxel Design Tokens - Shadow (hard edge, zero blur) */
+	--shadow-voxel: 4px 4px 0px 0px rgba(0, 0, 0, 0.8);
+	--shadow-voxel-sm: 2px 2px 0px 0px rgba(0, 0, 0, 0.8);
+	--shadow-voxel-lg: 6px 6px 0px 0px rgba(0, 0, 0, 0.8);
+	--shadow-none: none;
+
+	/* Voxel Design Tokens - Border & Radius */
+	--radius-voxel: 4px; /* Voxel feel, not pill */
+	--border-width: 3px; /* Interactive elements and cards */
+	--border-voxel: 3px solid var(--obsidian);
 
 	/* Voxel Focus Indicator Tokens */
 	--focus-color: var(--grass);
 	--focus-width: 2px;
 	--focus-style: dashed;
 	--focus-offset: 2px;
+
+	/* Voxel Disabled State Tokens (Cobble = disabled) */
+	--disabled-bg: var(--cobble);
+	--disabled-opacity: 0.6;
+
+	/* Voxel Skeleton/Loading Tokens */
+	--skeleton-bg: var(--stone);
+	--skeleton-opacity-min: 0.4;
+	--skeleton-opacity-max: 0.7;
+	--skeleton-duration: 1.5s;
+
+	/* Voxel Typography Tokens */
+	--font-heading: "VT323", monospace;
+	--font-body: "Space Mono", monospace;
+	--font-micro: "Press Start 2P", monospace;
+
+	/* Font sizes - WCAG 2.1 compliant (minimum 12px) */
+	/* --text-xs: 10px removed - fails WCAG minimum on mobile */
+	--text-sm: 12px; /* Minimum allowed (decorative badges only) */
+	--text-base: 14px; /* Body text, functional labels */
+	--text-lg: 16px;
+	--text-xl: 20px;
+	--text-2xl: 24px;
+	--text-3xl: 28px; /* Heading minimum */
+	--text-4xl: 32px;
+	--text-5xl: 40px;
+	--text-6xl: 42px; /* Heading maximum */
 }
 
 .dark {
@@ -146,7 +182,7 @@
 		opacity: 0.4;
 	}
 	50% {
-		opacity: 0.8;
+		opacity: 0.7;
 	}
 }
 
@@ -193,6 +229,7 @@
 
 	/* Voxel Colors for Tailwind */
 	--color-grass: var(--grass);
+	--color-dirt: var(--dirt);
 	--color-stone: var(--stone);
 	--color-lava: var(--lava);
 	--color-water: var(--water);
@@ -200,6 +237,7 @@
 	--color-obsidian: var(--obsidian);
 	--color-gold: var(--gold);
 	--color-ember: var(--ember);
+	--color-wood: var(--wood);
 	--color-cobble: var(--cobble);
 	--color-redstone: var(--redstone);
 	--color-sky: var(--sky);
@@ -231,6 +269,74 @@
 }
 
 @layer utilities {
+	/* ============================================
+	   TYPOGRAPHY UTILITIES - WCAG 2.1 Compliant
+	   ============================================ */
+
+	/* Heading styles - VT323, 28-42px */
+	.text-heading-sm {
+		font-family: var(--font-heading);
+		font-size: var(--text-3xl); /* 28px */
+		line-height: 1.25;
+	}
+	.text-heading-md {
+		font-family: var(--font-heading);
+		font-size: var(--text-4xl); /* 32px */
+		line-height: 1.25;
+	}
+	.text-heading-lg {
+		font-family: var(--font-heading);
+		font-size: var(--text-5xl); /* 40px */
+		line-height: 1.25;
+	}
+	.text-heading-xl {
+		font-family: var(--font-heading);
+		font-size: var(--text-6xl); /* 42px */
+		line-height: 1.25;
+	}
+
+	/* Label styles - VT323, 14px min, ALL CAPS */
+	/* Replaces Press Start 2P at 10px for accessibility */
+	.text-label {
+		font-family: var(--font-heading);
+		font-size: var(--text-base); /* 14px */
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+	.text-label-lg {
+		font-family: var(--font-heading);
+		font-size: var(--text-lg); /* 16px */
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	/* Body styles - Space Mono, 14px */
+	.text-body {
+		font-family: var(--font-body);
+		font-size: var(--text-base); /* 14px */
+		line-height: 1.5;
+	}
+
+	/* Badge/Micro styles - Press Start 2P, 12px min */
+	/* DECORATIVE ONLY - not for functional labels */
+	.text-badge {
+		font-family: var(--font-micro);
+		font-size: var(--text-sm); /* 12px minimum */
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	/* Font family utilities */
+	.font-heading {
+		font-family: var(--font-heading);
+	}
+	.font-body {
+		font-family: var(--font-body);
+	}
+	.font-micro {
+		font-family: var(--font-micro);
+	}
+
 	/* Voxel Shadow Utility */
 	.shadow-voxel {
 		box-shadow: var(--shadow-voxel);
@@ -376,6 +482,132 @@
 	.focus-voxel:focus-visible {
 		outline: var(--focus-width) var(--focus-style) var(--focus-color);
 		outline-offset: var(--focus-offset);
+	}
+
+	/* ============================================
+	   INTERACTIVE ELEMENT UTILITIES
+	   ============================================ */
+
+	/* Interactive element base - buttons, cards, inputs */
+	.voxel-interactive {
+		border: var(--border-voxel);
+		border-radius: var(--radius-voxel);
+		box-shadow: var(--shadow-voxel);
+	}
+
+	/* Smaller interactive elements */
+	.voxel-interactive-sm {
+		border: 2px solid var(--obsidian);
+		border-radius: var(--radius-voxel);
+		box-shadow: var(--shadow-voxel-sm);
+	}
+
+	/* Larger interactive elements */
+	.voxel-interactive-lg {
+		border: 4px solid var(--obsidian);
+		border-radius: var(--radius-voxel);
+		box-shadow: var(--shadow-voxel-lg);
+	}
+
+	/* Border width utilities */
+	.border-voxel {
+		border: var(--border-voxel);
+	}
+	.border-voxel-thin {
+		border: 2px solid var(--obsidian);
+	}
+	.border-voxel-thick {
+		border: 4px solid var(--obsidian);
+	}
+
+	/* ============================================
+	   DISABLED STATE UTILITIES
+	   ============================================ */
+
+	/* Disabled state - Cobble background, 60% opacity, no shadow */
+	.voxel-disabled,
+	.voxel-interactive:disabled,
+	.voxel-interactive[aria-disabled="true"],
+	.voxel-interactive-sm:disabled,
+	.voxel-interactive-sm[aria-disabled="true"],
+	.voxel-interactive-lg:disabled,
+	.voxel-interactive-lg[aria-disabled="true"] {
+		pointer-events: none;
+		cursor: not-allowed;
+		background-color: var(--disabled-bg);
+		box-shadow: var(--shadow-none);
+		opacity: var(--disabled-opacity);
+	}
+
+	/* ============================================
+	   SKELETON LOADING UTILITIES
+	   ============================================ */
+
+	/* Skeleton loading - Stone blocks, 0.4-0.7 opacity pulse, 1.5s loop */
+	.skeleton-voxel {
+		background-color: var(--skeleton-bg);
+		border-radius: var(--radius-voxel);
+		animation: skeleton-pulse var(--skeleton-duration) ease-in-out infinite;
+	}
+
+	/* Skeleton text placeholder */
+	.skeleton-text {
+		width: 100%;
+		height: 1em;
+		background-color: var(--skeleton-bg);
+		border-radius: var(--radius-voxel);
+		animation: skeleton-pulse var(--skeleton-duration) ease-in-out infinite;
+	}
+
+	/* Skeleton card placeholder */
+	.skeleton-card {
+		background-color: var(--skeleton-bg);
+		border: var(--border-voxel);
+		border-radius: var(--radius-voxel);
+		animation: skeleton-pulse var(--skeleton-duration) ease-in-out infinite;
+	}
+
+	/* ============================================
+	   NOISE TEXTURE UTILITIES
+	   ============================================ */
+
+	/* Subtle noise overlay for Stone/Wood surfaces */
+	.texture-noise {
+		position: relative;
+	}
+	.texture-noise::after {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		content: "";
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+		border-radius: inherit;
+		opacity: 0.05;
+	}
+
+	/* Higher opacity noise for more visible texture */
+	.texture-noise-heavy {
+		position: relative;
+	}
+	.texture-noise-heavy::after {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		content: "";
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+		border-radius: inherit;
+		opacity: 0.1;
+	}
+
+	/* Shadow size variants */
+	.shadow-voxel-sm {
+		box-shadow: var(--shadow-voxel-sm);
+	}
+	.shadow-voxel-lg {
+		box-shadow: var(--shadow-voxel-lg);
+	}
+	.shadow-none {
+		box-shadow: var(--shadow-none);
 	}
 }
 
