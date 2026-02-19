@@ -1,30 +1,16 @@
-import { createContext, type ReactNode, useContext, useState } from "react";
-import { useColorScheme } from "react-native";
+import { createContext, type ReactNode, useContext } from "react";
 
-import { darkTheme, lightTheme } from "../theme";
-
-export type Theme = typeof lightTheme;
-export type ThemeMode = "system" | "light" | "dark";
+import { type VoxelTheme, voxelTheme } from "../theme";
 
 interface ThemeContextValue {
-	isDark: boolean;
-	mode: ThemeMode;
-	setMode: (mode: ThemeMode) => void;
-	theme: Theme;
+	theme: VoxelTheme;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-	const systemColorScheme = useColorScheme();
-	const [mode, setMode] = useState<ThemeMode>("system");
-
-	const isDark =
-		mode === "system" ? systemColorScheme === "dark" : mode === "dark";
-	const theme = isDark ? darkTheme : lightTheme;
-
 	return (
-		<ThemeContext.Provider value={{ theme, isDark, mode, setMode }}>
+		<ThemeContext.Provider value={{ theme: voxelTheme }}>
 			{children}
 		</ThemeContext.Provider>
 	);
@@ -37,3 +23,5 @@ export function useTheme(): ThemeContextValue {
 	}
 	return context;
 }
+
+export type { VoxelTheme as Theme };

@@ -5,10 +5,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider, useTheme } from "@/providers/theme-provider";
 import { queryClient } from "@/utils/trpc";
 
-export const unstable_settings = {
-	initialRouteName: "(drawer)",
-};
-
 function RootLayoutNav() {
 	const { theme } = useTheme();
 
@@ -20,15 +16,15 @@ function RootLayoutNav() {
 				},
 				headerTitleStyle: {
 					color: theme.colors.foreground,
+					fontFamily: theme.fonts.heading,
 				},
 				headerTintColor: theme.colors.foreground,
+				contentStyle: {
+					backgroundColor: theme.colors.background,
+				},
 			}}
 		>
-			<Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-			<Stack.Screen
-				name="modal"
-				options={{ title: "Modal", presentation: "modal" }}
-			/>
+			<Stack.Screen name="index" options={{ headerShown: false }} />
 		</Stack>
 	);
 }

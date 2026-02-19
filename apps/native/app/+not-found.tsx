@@ -1,7 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
-import { Container } from "@/components/container";
 import { type Theme, useTheme } from "@/providers/theme-provider";
 
 export default function NotFoundScreen() {
@@ -10,21 +9,13 @@ export default function NotFoundScreen() {
 
 	return (
 		<>
-			<Stack.Screen options={{ title: "Oops!" }} />
-			<Container>
-				<View style={styles.container}>
-					<View style={styles.content}>
-						<Text style={styles.emoji}>🤔</Text>
-						<Text style={styles.title}>Page Not Found</Text>
-						<Text style={styles.description}>
-							Sorry, the page you're looking for doesn't exist.
-						</Text>
-						<Link href="/" style={styles.button}>
-							<Text style={styles.buttonText}>Go to Home</Text>
-						</Link>
-					</View>
-				</View>
-			</Container>
+			<Stack.Screen options={{ title: "Not Found" }} />
+			<View style={styles.container}>
+				<Text style={styles.title}>PAGE NOT FOUND</Text>
+				<Link href="/" style={styles.link}>
+					<Text style={styles.linkText}>Go Home</Text>
+				</Link>
+			</View>
 		</>
 	);
 }
@@ -35,37 +26,28 @@ function getStyles(theme: Theme) {
 			flex: 1,
 			justifyContent: "center",
 			alignItems: "center",
-			padding: theme.spacing.lg,
-		},
-		content: {
-			alignItems: "center",
-		},
-		emoji: {
-			fontSize: 64,
-			marginBottom: theme.spacing.md,
+			backgroundColor: theme.colors.background,
+			padding: theme.spacing[6],
 		},
 		title: {
-			fontSize: theme.fontSize["2xl"],
-			fontWeight: "bold",
+			fontFamily: theme.fonts.heading,
+			fontSize: theme.fontSize["3xl"],
 			color: theme.colors.foreground,
-			marginBottom: theme.spacing.sm,
-			textAlign: "center",
+			marginBottom: theme.spacing[4],
 		},
-		description: {
-			color: theme.colors.mutedForeground,
-			textAlign: "center",
-			marginBottom: theme.spacing.xl,
-			maxWidth: 280,
+		link: {
+			paddingVertical: theme.spacing[2],
+			paddingHorizontal: theme.spacing[4],
+			backgroundColor: theme.colors.primary,
+			borderRadius: theme.borderRadius.voxel,
+			borderWidth: theme.borderWidth.default,
+			borderColor: theme.colors.border,
 		},
-		button: {
-			backgroundColor: `${theme.colors.primary}1A`,
-			paddingHorizontal: theme.spacing.lg,
-			paddingVertical: theme.spacing.sm + 4,
-			borderRadius: theme.borderRadius.lg,
-		},
-		buttonText: {
-			color: theme.colors.primary,
-			fontWeight: "500",
+		linkText: {
+			fontFamily: theme.fonts.heading,
+			fontSize: theme.fontSize.base,
+			color: theme.colors.primaryForeground,
+			textTransform: "uppercase",
 		},
 	});
 }
