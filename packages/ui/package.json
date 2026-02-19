@@ -20,6 +20,43 @@
     "./voxel-button-demo": {
       "import": "./src/voxel-button-demo.tsx",
       "types": "./src/voxel-button-demo.tsx"
+    },
+    "./icons": {
+      "react-native": "./src/icons/icons.native.tsx",
+      "import": "./src/icons/index.ts",
+      "types": "./src/icons/index.ts"
+    },
+    "./components": {
+      "react-native": "./src/components/index.native.ts",
+      "import": "./src/components/index.ts",
+      "types": "./src/components/index.ts"
+    },
+    "./components/stat-bar": {
+      "react-native": "./src/components/stat-bar.native.tsx",
+      "import": "./src/components/stat-bar.tsx",
+      "types": "./src/components/stat-bar.tsx"
+    },
+    "./components/overflow-badge": {
+      "react-native": "./src/components/overflow-badge.native.tsx",
+      "import": "./src/components/overflow-badge.tsx",
+      "types": "./src/components/overflow-badge.tsx"
+    }
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.70",
+    "react-native-reanimated": ">=3",
+    "react-native-svg": ">=13"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    },
+    "react-native-reanimated": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
     }
   },
   "files": [
@@ -29,6 +66,12 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-native": "^0.73",
+    "react": "^19",
+    "react-native": "^0.76",
+    "react-native-reanimated": "^3",
+    "react-native-svg": "^15",
     "typescript": "^5"
   }
 }

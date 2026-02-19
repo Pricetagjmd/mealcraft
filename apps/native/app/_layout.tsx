@@ -1,12 +1,14 @@
+import "../unistyles";
+
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { View } from "react-native";
+import { useUnistyles } from "react-native-unistyles";
 
-import { ThemeProvider, useTheme } from "@/providers/theme-provider";
 import { queryClient } from "@/utils/trpc";
 
 function RootLayoutNav() {
-	const { theme } = useTheme();
+	const { theme } = useUnistyles();
 
 	return (
 		<Stack
@@ -32,11 +34,9 @@ function RootLayoutNav() {
 export default function RootLayout() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<GestureHandlerRootView style={{ flex: 1 }}>
-				<ThemeProvider>
-					<RootLayoutNav />
-				</ThemeProvider>
-			</GestureHandlerRootView>
+			<View style={{ flex: 1 }}>
+				<RootLayoutNav />
+			</View>
 		</QueryClientProvider>
 	);
 }

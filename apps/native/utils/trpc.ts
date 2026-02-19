@@ -6,9 +6,18 @@ import { createTRPCClient, httpBatchLink } from "@trpc/client";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { Platform } from "react-native";
 
-import { authClient } from "@/lib/auth-client";
-
 export const queryClient = new QueryClient();
+
+// Lazy-load auth-client so native modules (@better-auth/expo, expo-constants) are
+// not loaded at app startup (avoids TurboModuleRegistry 'PlatformConstants' in Expo Go).
+function getAuthCookie(): string | null {
+	try {
+		const { authClient } = require("@/lib/auth-client");
+		return authClient.getCookie();
+	} catch {
+		return null;
+	}
+}
 
 const trpcClient = createTRPCClient<AppRouter>({
 	links: [
@@ -27,7 +36,7 @@ const trpcClient = createTRPCClient<AppRouter>({
 					return {};
 				}
 				const headers = new Map<string, string>();
-				const cookies = authClient.getCookie();
+				const cookies = getAuthCookie();
 				if (cookies) {
 					headers.set("Cookie", cookies);
 				}

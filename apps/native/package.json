@@ -4,7 +4,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev": "expo start --clear",
+    "dev": "expo start --clear --dev-client",
+    "dev:go": "expo start --clear --go",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web"
@@ -47,6 +48,8 @@
     "react-native-reanimated": "~4.1.0",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "react-native-unistyles": "^3.0.24",
     "react-native-web": "^0.21.2",
     "react-native-worklets": "^0.5.1",
     "zod": "catalog:"

@@ -1,12 +1,8 @@
 import { Link, Stack } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
-
-import { type Theme, useTheme } from "@/providers/theme-provider";
+import { Text, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
 export default function NotFoundScreen() {
-	const { theme } = useTheme();
-	const styles = getStyles(theme);
-
 	return (
 		<>
 			<Stack.Screen options={{ title: "Not Found" }} />
@@ -20,34 +16,32 @@ export default function NotFoundScreen() {
 	);
 }
 
-function getStyles(theme: Theme) {
-	return StyleSheet.create({
-		container: {
-			flex: 1,
-			justifyContent: "center",
-			alignItems: "center",
-			backgroundColor: theme.colors.background,
-			padding: theme.spacing[6],
-		},
-		title: {
-			fontFamily: theme.fonts.heading,
-			fontSize: theme.fontSize["3xl"],
-			color: theme.colors.foreground,
-			marginBottom: theme.spacing[4],
-		},
-		link: {
-			paddingVertical: theme.spacing[2],
-			paddingHorizontal: theme.spacing[4],
-			backgroundColor: theme.colors.primary,
-			borderRadius: theme.borderRadius.voxel,
-			borderWidth: theme.borderWidth.default,
-			borderColor: theme.colors.border,
-		},
-		linkText: {
-			fontFamily: theme.fonts.heading,
-			fontSize: theme.fontSize.base,
-			color: theme.colors.primaryForeground,
-			textTransform: "uppercase",
-		},
-	});
-}
+const styles = StyleSheet.create((theme) => ({
+	container: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: theme.colors.background,
+		padding: theme.spacing[6],
+	},
+	title: {
+		fontFamily: theme.fonts.heading,
+		fontSize: theme.fontSize["3xl"],
+		color: theme.colors.foreground,
+		marginBottom: theme.spacing[4],
+	},
+	link: {
+		paddingVertical: theme.spacing[2],
+		paddingHorizontal: theme.spacing[4],
+		backgroundColor: theme.colors.primary,
+		borderRadius: theme.borderRadius.voxel,
+		borderWidth: theme.borderWidth.default,
+		borderColor: theme.colors.border,
+	},
+	linkText: {
+		fontFamily: theme.fonts.heading,
+		fontSize: theme.fontSize.base,
+		color: theme.colors.primaryForeground,
+		textTransform: "uppercase",
+	},
+}));

@@ -67,6 +67,18 @@ export const voxelTheme = {
 		opacity: disabled.opacity,
 	},
 	durations,
+	// Animation configuration for Reanimated
+	// Actual animation functions are in ./animations.ts
+	animations: {
+		shake: { duration: 300, amplitude: 4, easing: "ease-in-out" as const },
+		depress: { duration: durations.fast, translateY: 2 },
+		pulse: { duration: durations.pulse, opacityMin: 0.4, opacityMax: 0.7 },
+		skeleton: { duration: durations.pulse, opacityMin: 0.4, opacityMax: 0.7 },
+	},
+	// TODO: Add noise texture overlay for Stone/Wood surfaces
+	// - Create 64x64 tileable noise PNG at apps/native/assets/noise-tile.png
+	// - Create NoiseOverlay component using ImageBackground
+	// - Apply at 5-10% opacity over Stone/Wood backgrounds
 } as const;
 
 export type VoxelTheme = typeof voxelTheme;
