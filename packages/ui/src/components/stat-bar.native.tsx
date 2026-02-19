@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
 import { HeartIcon, ShankIcon } from "../icons/icons.native";
-import { borderRadius, shadows } from "../tokens";
 import { OverflowBadge } from "./overflow-badge.native";
 
 const DEFAULT_MAX = {
@@ -10,6 +10,7 @@ const DEFAULT_MAX = {
 } as const;
 
 interface StatBarProps {
+	accessibilityLabel?: string;
 	max?: number;
 	onExpand?: () => void;
 	value: number;
@@ -33,43 +34,14 @@ function generateIconKeys(
 /**
  * React Native StatBar component for displaying Health (hearts) or Hunger (shanks)
  * Renders filled icons left-to-right, with overflow badge for excess values
- *
- * Note: This simplified version doesn't use react-native-reanimated for Expo Go compatibility.
- * For the animated version, use a dev build with react-native-reanimated installed.
  */
-function getStatBarStyles() {
-	// Defer StyleSheet.create to first render (avoids TurboModuleRegistry/PlatformConstants at load in Expo Go).
-	if (!statBarStylesCache) {
-		statBarStylesCache = StyleSheet.create({
-			container: {
-				alignItems: "center",
-				backgroundColor: "transparent",
-				borderRadius: borderRadius.voxel,
-				flexDirection: "row",
-				height: 24,
-				paddingHorizontal: 2,
-				paddingVertical: 2,
-				shadowColor: shadows.voxel.shadowColor,
-				shadowOffset: shadows.voxel.shadowOffset,
-				shadowOpacity: shadows.voxel.shadowOpacity,
-				shadowRadius: shadows.voxel.shadowRadius,
-				elevation: shadows.voxel.elevation,
-			},
-			iconRow: {
-				alignItems: "center",
-				flexDirection: "row",
-				flexWrap: "nowrap",
-				gap: 2,
-			},
-		});
-	}
-	return statBarStylesCache;
-}
-let statBarStylesCache: ReturnType<
-	typeof StyleSheet.create<{ container: object; iconRow: object }>
-> | null = null;
-
-export function StatBar({ variant, value, max, onExpand }: StatBarProps) {
+export function StatBar({
+	variant,
+	value,
+	max,
+	onExpand,
+	accessibilityLabel: customAccessibilityLabel,
+}: StatBarProps) {
 	const maxIcons = max ?? DEFAULT_MAX[variant];
 	const filledCount = Math.min(Math.max(0, value), maxIcons);
 	const emptyCount = maxIcons - filledCount;
@@ -77,9 +49,10 @@ export function StatBar({ variant, value, max, onExpand }: StatBarProps) {
 
 	const IconComponent = variant === "health" ? HeartIcon : ShankIcon;
 	const keys = generateIconKeys(filledCount, emptyCount);
-	const styles = getStatBarStyles();
 
-	const accessibilityLabel = `${variant === "health" ? "Health" : "Hunger"}: ${value} of ${maxIcons}`;
+	const defaultAccessibilityLabel = `${variant === "health" ? "Health" : "Hunger"}: ${value} of ${maxIcons}`;
+	const accessibilityLabel =
+		customAccessibilityLabel ?? defaultAccessibilityLabel;
 
 	return (
 		<Pressable
@@ -101,6 +74,24 @@ export function StatBar({ variant, value, max, onExpand }: StatBarProps) {
 		</Pressable>
 	);
 }
+
+const styles = StyleSheet.create((theme) => ({
+	container: {
+		alignItems: "center",
+		backgroundColor: "transparent",
+		borderRadius: theme.borderRadius.voxel,
+		flexDirection: "row",
+		height: 24,
+		paddingHorizontal: 2,
+		paddingVertical: 2,
+	},
+	iconRow: {
+		alignItems: "center",
+		flexDirection: "row",
+		flexWrap: "nowrap",
+		gap: 2,
+	},
+}));
 
 // Alias for backwards compatibility
 export const StatBarWeb = StatBar;

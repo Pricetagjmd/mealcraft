@@ -46,7 +46,8 @@
     "react": ">=18",
     "react-native": ">=0.70",
     "react-native-reanimated": ">=3",
-    "react-native-svg": ">=13"
+    "react-native-svg": ">=13",
+    "react-native-unistyles": ">=3"
   },
   "peerDependenciesMeta": {
     "react-native": {
@@ -56,6 +57,9 @@
       "optional": true
     },
     "react-native-svg": {
+      "optional": true
+    },
+    "react-native-unistyles": {
       "optional": true
     }
   },
