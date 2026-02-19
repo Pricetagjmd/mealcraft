@@ -39,20 +39,28 @@
 	--sidebar-ring: oklch(0.708 0 0);
 
 	/* Voxel Design Tokens - Colors */
-	--grass: #5d9b47;
-	--stone: #7f7f7f;
+	--grass: #5d8e22;
+	--stone: #7e7e7e;
 	--lava: #cf4913;
 	--water: #3f76e4;
 	--diamond: #4aedd9;
-	--obsidian: #1d1d21;
+	--obsidian: #1a1a1a;
 	--gold: #fcdb43;
 	--ember: #ff6b35;
 	--cobble: #535353;
 	--redstone: #aa0f01;
+	--sky: #c4e5f2;
+	--white: #ffffff;
 
 	/* Voxel Design Tokens - Shadow & Radius */
 	--shadow-voxel: 4px 4px 0px 0px rgba(0, 0, 0, 1);
 	--radius-voxel: 4px;
+
+	/* Voxel Focus Indicator Tokens */
+	--focus-color: var(--grass);
+	--focus-width: 2px;
+	--focus-style: dashed;
+	--focus-offset: 2px;
 }
 
 .dark {
@@ -194,6 +202,8 @@
 	--color-ember: var(--ember);
 	--color-cobble: var(--cobble);
 	--color-redstone: var(--redstone);
+	--color-sky: var(--sky);
+	--color-white: var(--white);
 }
 
 @layer base {
@@ -205,6 +215,18 @@
 	}
 	html {
 		@apply font-sans;
+	}
+
+	/* Voxel Focus Indicator - WCAG 2.1 AA compliant */
+	button:focus-visible,
+	a:focus-visible,
+	input:focus-visible,
+	select:focus-visible,
+	textarea:focus-visible,
+	[tabindex]:focus-visible,
+	[role="button"]:focus-visible {
+		outline: var(--focus-width) var(--focus-style) var(--focus-color);
+		outline-offset: var(--focus-offset);
 	}
 }
 
@@ -264,6 +286,12 @@
 	.bg-redstone {
 		background-color: var(--redstone);
 	}
+	.bg-sky {
+		background-color: var(--sky);
+	}
+	.bg-white {
+		background-color: var(--white);
+	}
 
 	/* Voxel Text Color Utilities */
 	.text-grass {
@@ -296,6 +324,12 @@
 	.text-redstone {
 		color: var(--redstone);
 	}
+	.text-sky {
+		color: var(--sky);
+	}
+	.text-white {
+		color: var(--white);
+	}
 
 	/* Voxel Border Color Utilities */
 	.border-grass {
@@ -327,6 +361,21 @@
 	}
 	.border-redstone {
 		border-color: var(--redstone);
+	}
+	.border-sky {
+		border-color: var(--sky);
+	}
+	.border-white {
+		border-color: var(--white);
+	}
+
+	/* Voxel Focus Indicator Utility */
+	.focus-voxel:focus {
+		outline: none;
+	}
+	.focus-voxel:focus-visible {
+		outline: var(--focus-width) var(--focus-style) var(--focus-color);
+		outline-offset: var(--focus-offset);
 	}
 }
 
@@ -380,6 +429,12 @@
 	.sm\:bg-redstone {
 		background-color: var(--redstone);
 	}
+	.sm\:bg-sky {
+		background-color: var(--sky);
+	}
+	.sm\:bg-white {
+		background-color: var(--white);
+	}
 	.sm\:text-grass {
 		color: var(--grass);
 	}
@@ -410,6 +465,12 @@
 	.sm\:text-redstone {
 		color: var(--redstone);
 	}
+	.sm\:text-sky {
+		color: var(--sky);
+	}
+	.sm\:text-white {
+		color: var(--white);
+	}
 	.sm\:border-grass {
 		border-color: var(--grass);
 	}
@@ -439,6 +500,12 @@
 	}
 	.sm\:border-redstone {
 		border-color: var(--redstone);
+	}
+	.sm\:border-sky {
+		border-color: var(--sky);
+	}
+	.sm\:border-white {
+		border-color: var(--white);
 	}
 }
 
@@ -492,6 +559,12 @@
 	.md\:bg-redstone {
 		background-color: var(--redstone);
 	}
+	.md\:bg-sky {
+		background-color: var(--sky);
+	}
+	.md\:bg-white {
+		background-color: var(--white);
+	}
 	.md\:text-grass {
 		color: var(--grass);
 	}
@@ -522,6 +595,12 @@
 	.md\:text-redstone {
 		color: var(--redstone);
 	}
+	.md\:text-sky {
+		color: var(--sky);
+	}
+	.md\:text-white {
+		color: var(--white);
+	}
 	.md\:border-grass {
 		border-color: var(--grass);
 	}
@@ -551,5 +630,11 @@
 	}
 	.md\:border-redstone {
 		border-color: var(--redstone);
+	}
+	.md\:border-sky {
+		border-color: var(--sky);
+	}
+	.md\:border-white {
+		border-color: var(--white);
 	}
 }

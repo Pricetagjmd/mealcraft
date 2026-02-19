@@ -8,16 +8,18 @@
 // COLOR TOKENS - 10 Voxel Colors
 // ============================================
 export const colors = {
-	grass: "#5d9b47",
-	stone: "#7f7f7f",
+	grass: "#5D8E22",
+	stone: "#7E7E7E",
 	lava: "#cf4913",
 	water: "#3f76e4",
 	diamond: "#4aedd9",
-	obsidian: "#1d1d21",
+	obsidian: "#1A1A1A",
 	gold: "#fcdb43",
 	ember: "#ff6b35",
 	cobble: "#535353",
 	redstone: "#aa0f01",
+	sky: "#C4E5F2",
+	white: "#FFFFFF",
 } as const;
 
 // Semantic color aliases
@@ -137,6 +139,26 @@ export const durations = {
 export const breakpoints = {
 	sm: 640,
 	md: 1024,
+} as const;
+
+// ============================================
+// TYPE EXPORTS
+// ============================================
+// ============================================
+// FOCUS INDICATOR TOKENS
+// ============================================
+export const focus = {
+	color: colors.grass,
+	width: 2,
+	style: "dashed" as const,
+	offset: 2,
+} as const;
+
+// React Native focus style
+export const focusStyleRN = {
+	borderWidth: 2,
+	borderColor: colors.grass,
+	borderStyle: "dashed" as const,
 } as const;
 
 // ============================================

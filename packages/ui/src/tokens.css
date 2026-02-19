@@ -13,18 +13,20 @@
    ============================================ */
 :root {
 	/* ------------------------------------------
-	   COLOR TOKENS - 10 Voxel Colors
+	   COLOR TOKENS - 12 Voxel Colors
 	   ------------------------------------------ */
-	--grass: #5d9b47;
-	--stone: #7f7f7f;
+	--grass: #5d8e22;
+	--stone: #7e7e7e;
 	--lava: #cf4913;
 	--water: #3f76e4;
 	--diamond: #4aedd9;
-	--obsidian: #1d1d21;
+	--obsidian: #1a1a1a;
 	--gold: #fcdb43;
 	--ember: #ff6b35;
 	--cobble: #535353;
 	--redstone: #aa0f01;
+	--sky: #c4e5f2;
+	--white: #ffffff;
 
 	/* Semantic aliases */
 	--bg: var(--obsidian);
@@ -97,6 +99,14 @@
 
 	--ease-voxel: cubic-bezier(0.4, 0, 0.2, 1);
 	--ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+	/* ------------------------------------------
+	   FOCUS INDICATOR TOKENS
+	   ------------------------------------------ */
+	--focus-color: var(--grass);
+	--focus-width: 2px;
+	--focus-style: dashed;
+	--focus-offset: 2px;
 
 	/* ------------------------------------------
 	   BREAKPOINT TOKENS (for reference in JS)
@@ -265,6 +275,12 @@ p,
 .bg-redstone {
 	background-color: var(--redstone);
 }
+.bg-sky {
+	background-color: var(--sky);
+}
+.bg-white {
+	background-color: var(--white);
+}
 
 /* ============================================
    UTILITY CLASSES - Text Colors
@@ -299,6 +315,12 @@ p,
 .text-redstone {
 	color: var(--redstone);
 }
+.text-sky {
+	color: var(--sky);
+}
+.text-white {
+	color: var(--white);
+}
 
 /* ============================================
    UTILITY CLASSES - Border Colors
@@ -332,6 +354,23 @@ p,
 }
 .border-redstone {
 	border-color: var(--redstone);
+}
+.border-sky {
+	border-color: var(--sky);
+}
+.border-white {
+	border-color: var(--white);
+}
+
+/* ============================================
+   UTILITY CLASSES - Focus Indicator
+   ============================================ */
+.focus-voxel:focus {
+	outline: none;
+}
+.focus-voxel:focus-visible {
+	outline: var(--focus-width) var(--focus-style) var(--focus-color);
+	outline-offset: var(--focus-offset);
 }
 
 /* ============================================
@@ -399,6 +438,12 @@ p,
 	.sm\:bg-redstone {
 		background-color: var(--redstone);
 	}
+	.sm\:bg-sky {
+		background-color: var(--sky);
+	}
+	.sm\:bg-white {
+		background-color: var(--white);
+	}
 	.sm\:text-grass {
 		color: var(--grass);
 	}
@@ -429,6 +474,12 @@ p,
 	.sm\:text-redstone {
 		color: var(--redstone);
 	}
+	.sm\:text-sky {
+		color: var(--sky);
+	}
+	.sm\:text-white {
+		color: var(--white);
+	}
 	.sm\:border-grass {
 		border-color: var(--grass);
 	}
@@ -458,6 +509,12 @@ p,
 	}
 	.sm\:border-redstone {
 		border-color: var(--redstone);
+	}
+	.sm\:border-sky {
+		border-color: var(--sky);
+	}
+	.sm\:border-white {
+		border-color: var(--white);
 	}
 }
 
@@ -513,6 +570,12 @@ p,
 	.md\:bg-redstone {
 		background-color: var(--redstone);
 	}
+	.md\:bg-sky {
+		background-color: var(--sky);
+	}
+	.md\:bg-white {
+		background-color: var(--white);
+	}
 	.md\:text-grass {
 		color: var(--grass);
 	}
@@ -543,6 +606,12 @@ p,
 	.md\:text-redstone {
 		color: var(--redstone);
 	}
+	.md\:text-sky {
+		color: var(--sky);
+	}
+	.md\:text-white {
+		color: var(--white);
+	}
 	.md\:border-grass {
 		border-color: var(--grass);
 	}
@@ -572,5 +641,11 @@ p,
 	}
 	.md\:border-redstone {
 		border-color: var(--redstone);
+	}
+	.md\:border-sky {
+		border-color: var(--sky);
+	}
+	.md\:border-white {
+		border-color: var(--white);
 	}
 }
